@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Raise Me Up: Infinite Ascent - Beta</title>
+<meta name="description" content="Download the closed beta of Raise Me Up: Infinite Ascent, an anime tower RPG where your heroes live, remember and answer back.">
+<style>
+:root{--bg:#0d0b1e;--panel:#1b1740;--panel2:#241f55;--gold:#f5c86b;--text:#ebe9f8;--dim:#9a9fc8;--green:#5dd39e}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1200px 600px at 50% -200px,#2b2470 0,#0d0b1e 70%);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 18px 80px}
+h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1.1;margin:.2em 0 .1em;color:var(--gold);letter-spacing:.02em}
+h2{color:var(--gold);margin:2.2em 0 .5em;font-size:1.4rem}
+.tag{color:var(--dim);font-size:1.1rem;margin:0 0 1.2em}
+.card{background:var(--panel);border:2px solid #3a3380;border-radius:22px;padding:22px;margin:18px 0}
+.btn{display:inline-block;background:var(--gold);color:#0d0b1e;font-weight:700;font-size:1.2rem;padding:16px 28px;border-radius:16px;text-decoration:none;border:0;cursor:pointer}
+.btn.alt{background:transparent;color:var(--text);border:2px solid var(--gold);font-size:1rem;padding:10px 18px;font-weight:600}
+.meta{color:var(--dim);font-size:.95rem;margin-top:12px;word-break:break-all}
+ol,ul{padding-left:1.3em}li{margin:.5em 0}
+code,pre{background:#120f30;border-radius:10px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88rem}
+code{padding:2px 6px}pre{padding:14px;overflow:auto;position:relative;white-space:pre-wrap;word-break:break-word}
+.copy{position:absolute;top:8px;right:8px;background:var(--panel2);color:var(--text);border:1px solid #4a43a0;border-radius:8px;padding:4px 10px;font-size:.8rem;cursor:pointer}
+.warn{border-left:4px solid var(--gold);padding:8px 14px;background:#161236;border-radius:8px;color:var(--dim)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.grid div{background:var(--panel);border-radius:16px;padding:16px}
+.grid b{color:var(--gold)}
+footer{color:var(--dim);font-size:.9rem;margin-top:3em}
+a{color:var(--gold)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Raise Me Up<br>Infinite Ascent</h1>
+<p class="tag">An anime tower RPG where your heroes have minds of their own. Summon them, command them, talk to them, and watch them remember.</p>
+
+<div class="card">
+  <a class="btn" id="dl" href="https://github.com/sommi991/raise-me-up-beta/releases/latest/download/raise-me-up.apk">Download the Android beta</a>
+  <button class="btn alt" id="share" type="button">Share this page</button>
+  <div class="meta" id="meta">Android phone, free, early beta.</div>
+</div>
+
+<h2>What you can do</h2>
+<div class="grid">
+  <div><b>Summon heroes</b><br>Start with three, each with a personality, a past and a trust level that changes with how you treat them.</div>
+  <div><b>Watch and command</b><br>Fights play out live. Type or speak orders like "Mira stay behind Veyra" or "all fall back".</div>
+  <div><b>Talk to them</b><br>Tap a hero in the Guild Hall. Praise them, ask about their past, and listen to them talk to each other.</div>
+</div>
+
+<h2>Install in 4 steps</h2>
+<ol>
+  <li><b>Download</b> the APK with the button above. If your browser warns that this type of file can be harmful, choose <i>Download anyway</i>: it is a game installed outside the Play Store.</li>
+  <li><b>Open</b> the downloaded file. Android will ask to let your browser (or Files app) install apps. Allow it, then go back and tap <i>Install</i>.</li>
+  <li><b>Play Protect</b> may say the app is unrecognised. Tap <i>More details</i>, then <i>Install anyway</i>. On Samsung phones, if installing is blocked, turn off <i>Auto Blocker</i> (Settings, Security and privacy, Auto Blocker).</li>
+  <li><b>Open the game</b>, enter a name, and reveal your first three heroes. Turn your phone sideways: the game is played in landscape.</li>
+</ol>
+<p class="warn">To update, just install the newer APK over the old one and your progress stays. If Android says "App not installed", uninstall the old version first (progress is lost).</p>
+
+<h2>What you need</h2>
+<ul>
+  <li>An Android phone with a 64-bit processor (nearly every phone since 2017), Android 8 or newer.</li>
+  <li>About 300 MB of free space and 4 GB of memory or more. Built and tested on a Samsung Galaxy S23.</li>
+</ul>
+
+<h2>Voice</h2>
+<ul>
+  <li><b>Heroes speak</b> with your phone's built-in text-to-speech. If you hear nothing, install a voice: Settings, General management, Language, Text-to-speech output. Turn voices on or off in the Guild Hall (<i>Voice replies</i>).</li>
+  <li><b>Speak to them:</b> tap <i>Speak</i>, then the microphone on your keyboard, and talk. The message sends when you stop. Typing works too.</li>
+</ul>
+
+<h2>Optional: smarter heroes (advanced)</h2>
+<p>The game works fully without this. If you like to tinker, a small language model can run on your own phone and let heroes answer free-form questions. It needs the free Termux app (from F-Droid, not the Play Store) and about 1 GB of space. If the <code>llama-cpp</code> package is not available in your Termux, skip this section.</p>
+<pre><button class="copy" type="button">Copy</button>pkg update -y
+pkg install -y llama-cpp python curl
+mkdir -p ~/models
+python3 - &lt;&lt;'PY'
+import json, urllib.request, subprocess, os
+repo = "unsloth/gemma-3-1b-it-GGUF"
+data = json.load(urllib.request.urlopen("https://huggingface.co/api/models/" + repo))
+f = [s["rfilename"] for s in data["siblings"] if "Q4_K_M" in s["rfilename"] and s["rfilename"].endswith(".gguf")][0]
+out = os.path.expanduser("~/models/gemma-3-1b-it-q4.gguf")
+subprocess.run(["curl", "-L", "-C", "-", "-o", out, "https://huggingface.co/%s/resolve/main/%s" % (repo, f)])
+PY</pre>
+<p>Then, every time you play, start the server in Termux and leave it running, and open the game:</p>
+<pre><button class="copy" type="button">Copy</button>termux-wake-lock
+llama-server -m ~/models/gemma-3-1b-it-q4.gguf --host 127.0.0.1 --port 8080 -c 1536 -np 1 -t 4</pre>
+<p>In the game, open <i>Brain Lab</i> from the Guild Hall and tap <i>Test connection</i>. The model is Google's Gemma; please read its terms of use before sharing anything made with it.</p>
+
+<h2>Known limits of this beta</h2>
+<ul>
+  <li>Characters, enemies and rooms use free low-poly art. Anime character models are planned.</li>
+  <li>One dungeon (the Ashen Cellar) and one guild hall. More floors come later.</li>
+  <li>Progress can be reset between versions if something big changes.</li>
+</ul>
+
+<h2>Privacy</h2>
+<p>No account, no tracking and no ads. Your progress and settings stay on your phone. The app asks for network permission only so it can talk to the optional model server running on the same phone.</p>
+
+<h2>Credits and licenses</h2>
+<p>Characters, enemies, animations and dungeon pieces by <a href="https://kaylousberg.com">Kay Lousberg (KayKit)</a>, CC0. Made with the Godot Engine (MIT). Hero voices use your phone's text-to-speech and, where installed, clips generated with Kokoro (Apache-2.0).</p>
+
+<h2>Feedback</h2>
+<p>Tell us what felt great and what broke: <a id="fb" href="https://github.com/sommi991/raise-me-up-beta/issues/new">send feedback</a>. Mention your phone model and what you were doing.</p>
+
+<footer>Raise Me Up: Infinite Ascent. Early beta, not for sale.</footer>
+</div>
+<script>
+var REPO = "sommi991/raise-me-up-beta";
+var dl = document.getElementById("dl"), meta = document.getElementById("meta");
+fetch("https://api.github.com/repos/" + REPO + "/releases/latest")
+  .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+  .then(function (rel) {
+    var a = (rel.assets || []).filter(function (x) { return x.name === "raise-me-up.apk"; })[0];
+    if (!a) { return; }
+    dl.href = a.browser_download_url;
+    var mb = (a.size / 1048576).toFixed(0);
+    var sha = (/SHA-256:\s*([0-9a-f]{64})/i.exec(rel.body || "") || [])[1];
+    meta.textContent = "Version " + rel.tag_name + ", " + mb + " MB, updated " + new Date(rel.published_at).toLocaleDateString()
+      + (sha ? ". SHA-256: " + sha : "") + ".";
+  })
+  .catch(function () {});
+document.getElementById("share").onclick = function () {
+  if (navigator.share) { navigator.share({ title: document.title, url: location.href }); }
+  else if (navigator.clipboard) { navigator.clipboard.writeText(location.href); this.textContent = "Link copied"; }
+};
+Array.prototype.forEach.call(document.querySelectorAll(".copy"), function (b) {
+  b.onclick = function () {
+    var pre = b.parentNode, text = pre.textContent.replace(/^Copy/, "");
+    if (navigator.clipboard) { navigator.clipboard.writeText(text); b.textContent = "Copied"; setTimeout(function () { b.textContent = "Copy"; }, 1500); }
+  };
+});
+</script>
+</body>
+</html>
